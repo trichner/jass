@@ -52,6 +52,19 @@ func (g *Game) NextRound() {
 	g.startingPlayer = winningPlay.Player
 }
 
+type PlayerScore struct {
+	Player deck.PlayerIdentifier
+	Score int
+}
+
+func (g *Game) Score() []PlayerScore {
+
+	for _, t := range g.tricks {
+		t.Cards()
+	}
+
+}
+
 func (g *Game) currentPlayer(i int) *playerState {
 	playerIndex := (i + g.startingPlayer.ID()) % 4
 	return g.players[playerIndex]
